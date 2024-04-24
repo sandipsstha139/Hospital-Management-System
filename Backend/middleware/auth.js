@@ -1,13 +1,14 @@
-import catchAsync from "./catchAsync";
-import AppError from "./appError";
+import catchAsync from "./catchAsync.js";
+import AppError from "./appError.js";
 import jwt from "jsonwebtoken";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 export const isAdminAuthenticated = catchAsync(async (req, res, next) => {
   const token = req.cookies.adminToken;
+  console.log(token);
 
-  if (!adminToken) {
-    return next(new AppError("User is not Authenticated!", 400));
+  if (!token) {
+    return next(new AppError("Admin is not Authenticated!", 400));
   }
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
@@ -24,9 +25,10 @@ export const isAdminAuthenticated = catchAsync(async (req, res, next) => {
 
 export const isPatientAuthenticated = catchAsync(async (req, res, next) => {
   const token = req.cookies.patientToken;
+  console.log(token);
 
-  if (!adminToken) {
-    return next(new AppError("User is not Authenticated!", 400));
+  if (!token) {
+    return next(new AppError("Patient is not Authenticated!", 400));
   }
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
