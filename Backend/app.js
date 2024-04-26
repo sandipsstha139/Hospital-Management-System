@@ -7,6 +7,7 @@ import fileUpload from 'express-fileupload';
 import globalErrorHandler from "./controllers/error.controller.js"
 import messageRoute from "./routes/message.route.js"
 import userRoute from "./routes/user.route.js"
+import appointmentRoute from "./routes/appointment.route.js"
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(morgan("dev"));
 // ROUTES
 app.use("/api/v1/message", messageRoute);
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/appointment", appointmentRoute);
 
 app.use(globalErrorHandler);
 // EXPORT APP
