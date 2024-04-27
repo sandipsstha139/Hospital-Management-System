@@ -12,6 +12,8 @@ import Navbar from "./components/Navbar";
 import { useContext, useEffect } from "react";
 import { Context } from "./context/Context";
 import apiRequest from "./lib/apiRequest";
+import Footer from './components/Footer';
+// import { toast } from "react-toastify";
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
@@ -20,10 +22,11 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const res = await apiRequest.get("/users/patient/me");
-        console.log(res);
         setIsAuthenticated(true);
         setUser(res.data.user);
-      } catch (error) {
+        // console.log(res);
+      } catch (err) {
+        // toast.error(err.response.data.message);
         setIsAuthenticated(false);
         setUser({});
       }
@@ -42,6 +45,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
+        <Footer />
         <ToastContainer position="top-center" />
       </Router>
     </>

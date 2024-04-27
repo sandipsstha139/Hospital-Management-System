@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "./../context/Context";
 import apiRequest from "../lib/apiRequest";
 import { toast } from "react-toastify";
+import {GiHamburgerMenu} from "react-icons/gi"
 
 const Navbar = () => {
   // eslint-disable-next-line no-unused-vars
@@ -45,6 +46,9 @@ const Navbar = () => {
             Login
           </button>
         )}
+      </div>
+      <div className='hamburger' onClick={()=> setShow(!show)}>
+        <GiHamburgerMenu />
       </div>
     </nav>
   );
